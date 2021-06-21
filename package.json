@@ -1,0 +1,25 @@
+{
+  "name": "notes-app",
+  "version": "1.0.0",
+  "description": "This is a web app that is being developed with self-learning intentions",
+  "main": "index.js",
+  "author": "Wellington Pacheco",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "csurf": "^1.11.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "express-mysql-session": "^2.1.4",
+    "express-session": "^1.17.1",
+    "mysql2": "^2.2.5",
+    "nodemailer": "^6.4.16"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}

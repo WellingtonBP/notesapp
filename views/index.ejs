@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <%- include('includes/head.ejs') %>
+   </head>
+   <body class="bg-light">
+      <%- include('includes/header.ejs') %>
+
+      <div class="modal fade" id="login-modal-box" tabindex="-1" aria-labelledby="title-login-box" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content mt-5">
+               <div class="modal-header">
+                  <h2 class="modal-title main-text-size" id="title-login-box">Entrar</h2>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true" class="main-text-size">&times;</span>
+                  </button>
+               </div>
+               <form action="/login" method="POST">
+                  <div class="modal-body">
+                     <div class="form-group">
+                        <label for="emailLogin" required class="text-secondary secondary-text-size">Email:</label>
+                        <input type="email" required class="form-control form-control-lg" name="emailLogin" id="emailLogin">
+                     </div>
+                     <div class="form-group">
+                        <label for="passwordLogin" class="text-secondary secondary-text-size">Senha:</label>
+                        <input type="password" required class="form-control form-control-lg" name="passwordLogin" id="passwordLogin">
+                     </div>
+                  </div>
+                  <div class="modal-footer main-text-size">
+                     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                     <button type="submit" class="mx-auto border-0 bg-white">Enviar</button>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+
+      <main class="container mt-5 pt-3">
+         <% if(loginInfo != ""){ %>
+            <div class="alert alert-danger alert-dismissible fade show">
+               <span class="secondary-text-size"><%- loginInfo %></span>
+               <button type="button" class="close" data-dismiss="alert">
+                  <span class="main-text-size">&times;</span>
+               </button>
+            </div>
+         <% } %> 
+         <div class="row">
+            <div class="col-sm-7 mx-auto"> 
+               <div class="card border-0">
+                  <div class="card-header bg-secondary text-center text-light rounded-top main-text-size">
+                     Cadastrar
+                  </div>
+                  <form action="/signup" method="post">
+                     <div class="card-body bg-light border-left border-right">
+                        <div class="form-row">
+                           <div class="form-group col-6">
+                              <label for="firstname" class="text-secondary secondary-text-size">Nome:</label>
+                              <input type="text" required class="form-control form-control-lg" name="firstname" id="firstname">
+                           </div>
+                           <div class="form-group col-6">
+                              <label for="lastname" class="text-secondary secondary-text-size">Sobrenome:</label>
+                              <input type="text" class="form-control form-control-lg" name="lastname" id="lastname">
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <label for="email" class="text-secondary secondary-text-size">Email:</label>
+                           <input type="email" required class="form-control form-control-lg" name="email" id="email">
+                        </div>
+                        <div class="form-row">
+                           <div class="form-group col-6">
+                              <label for="password" class="text-secondary secondary-text-size">Senha:</label>
+                              <input type="password" required class="form-control form-control-lg" name="password" id="password">
+                           </div>
+                           <div class="form-group col-6">
+                              <label for="passwordcheck" class="text-secondary secondary-text-size">Confirme sua senha:</label>
+                              <input type="password" required class="form-control form-control-lg" name="passwordcheck" id="passwordcheck">
+                           </div>
+                        </div>
+                        <div class="form-row">
+                           <div class="form-group col-6">
+                              <label for="gender" class="text-secondary secondary-text-size">Sexo:</label>
+                              <select name="gender" class="form-control form-control-lg" id="gender">
+                                 <option value="Masculino">Masculino</option>
+                                 <option value="Feminino">Feminino</option>
+                                 <option value="Outro">Outro</option>
+                              </select>
+                           </div>
+                           <div class="form-group col-6">
+                              <label for="birthday" class="text-secondary secondary-text-size">Nascimento</label>
+                              <input type="date" class="form-control form-control-lg" name="birthday" id="birthday">
+                           </div>
+                        </div>
+                        <% if((signUpInfo != "") && signUpSuccess){ %>
+                           <div class="alert alert-<%= signUpSuccess == 'true' ? 'success' : 'danger' %> alert-dismissible fade show ">
+                              <span class="secondary-text-size"><%- signUpInfo %></span>
+                              <button type="button" class="close" data-dismiss="alert">
+                                 <span class="main-text-size">&times;</span>
+                              </button>
+                           </div>
+                        <% } %> 
+                     </div>
+                     <div class="card-footer bg-secondary text-center rounded-bottom main-text-size">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <button type="submit" class="text-light bg-secondary border-0 rounded px-3">Enviar</button>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </main>
+   </body>
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+</html>

@@ -1,0 +1,21 @@
+<header class="bg-secondary">
+   <div class="container">
+      <nav class="navbar navbar-expand navbar-dark">
+         <a href="/" class="navbar-brand d-flex">
+            <img src="<%=path!='/'?'../':''%>img/logo.svg">
+            <span class="text-light font-italic align-self-center ml-2 main-text-size">Notes</span>
+         </a>
+         <ul class="navbar-nav ml-auto">
+            <% if(path == '/workspace' || path == '/workspace/add' || path == '/workspace/profile'){ %>
+               <li class="nav-item mx-md-3 main-text-size">
+                  <a class="nav-link text-light" href="/logout">Sair</a>
+               </li>
+            <% }else if(path == '/'){ %>
+               <li class="nav-item text-light px-1 cursor-pointer main-text-size" data-toggle="modal" data-target="#login-modal-box">
+                  <a class="nav-link text-light">Entrar</a>
+               </li>
+            <% } %>
+         </ul>
+      </nav>
+   </div>
+</header>
